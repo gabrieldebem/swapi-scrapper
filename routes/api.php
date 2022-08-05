@@ -1,5 +1,13 @@
 <?php
 
+use App\Http\Controllers\FilmController;
+use App\Http\Controllers\PersonController;
+use App\Http\Controllers\PlanetController;
+use App\Http\Controllers\SpeciesController;
+use App\Http\Controllers\StarshipController;
+use App\Http\Controllers\SyncAllEntities;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,33 +21,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/users', [\App\Http\Controllers\UserController::class, 'store']);
-Route::post('/users/auth', [\App\Http\Controllers\UserController::class, 'auth']);
+Route::post('/users', [UserController::class, 'store']);
+Route::post('/users/auth', [UserController::class, 'auth']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/users/me', [\App\Http\Controllers\UserController::class, 'me']);
+    Route::get('/users/me', [UserController::class, 'me']);
+    Route::post('/entities/sync', SyncAllEntities::class);
 
-    Route::get('/people', [\App\Http\Controllers\PersonController::class, 'index']);
-    Route::get('/people/{id}', [\App\Http\Controllers\PersonController::class, 'show']);
-    Route::post('/people/sync', [\App\Http\Controllers\PersonController::class, 'sync']);
 
-    Route::get('/films', [\App\Http\Controllers\FilmController::class, 'index']);
-    Route::get('/films/{id}', [\App\Http\Controllers\FilmController::class, 'show']);
-    Route::post('/films/sync', [\App\Http\Controllers\FilmController::class, 'sync']);
+    Route::get('/people', [PersonController::class, 'index']);
+    Route::get('/people/{id}', [PersonController::class, 'show']);
+    Route::post('/people/sync', [PersonController::class, 'sync']);
 
-    Route::get('/planets', [\App\Http\Controllers\PlanetController::class, 'index']);
-    Route::get('/planets/{id}', [\App\Http\Controllers\PlanetController::class, 'show']);
-    Route::post('/planets/sync', [\App\Http\Controllers\PlanetController::class, 'sync']);
+    Route::get('/films', [FilmController::class, 'index']);
+    Route::get('/films/{id}', [FilmController::class, 'show']);
+    Route::post('/films/sync', [FilmController::class, 'sync']);
 
-    Route::get('/species', [\App\Http\Controllers\SpeciesController::class, 'index']);
-    Route::get('/species/{id}', [\App\Http\Controllers\SpeciesController::class, 'show']);
-    Route::post('/species/sync', [\App\Http\Controllers\SpeciesController::class, 'sync']);
+    Route::get('/planets', [PlanetController::class, 'index']);
+    Route::get('/planets/{id}', [PlanetController::class, 'show']);
+    Route::post('/planets/sync', [PlanetController::class, 'sync']);
 
-    Route::get('/starships', [\App\Http\Controllers\StarshipController::class, 'index']);
-    Route::get('/starships/{id}', [\App\Http\Controllers\StarshipController::class, 'show']);
-    Route::post('/starships/sync', [\App\Http\Controllers\StarshipController::class, 'sync']);
+    Route::get('/species', [SpeciesController::class, 'index']);
+    Route::get('/species/{id}', [SpeciesController::class, 'show']);
+    Route::post('/species/sync', [SpeciesController::class, 'sync']);
 
-    Route::get('/vehicles', [\App\Http\Controllers\VehicleController::class, 'index']);
-    Route::get('/vehicles/{id}', [\App\Http\Controllers\VehicleController::class, 'show']);
-    Route::post('/vehicles/sync', [\App\Http\Controllers\VehicleController::class, 'sync']);
+    Route::get('/starships', [StarshipController::class, 'index']);
+    Route::get('/starships/{id}', [StarshipController::class, 'show']);
+    Route::post('/starships/sync', [StarshipController::class, 'sync']);
+
+    Route::get('/vehicles', [VehicleController::class, 'index']);
+    Route::get('/vehicles/{id}', [VehicleController::class, 'show']);
+    Route::post('/vehicles/sync', [VehicleController::class, 'sync']);
 });

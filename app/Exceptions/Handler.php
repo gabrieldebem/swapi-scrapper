@@ -48,9 +48,7 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->renderable(function (AuthenticationException $e, $request) {
-            return ! $request->expectsJson()
-                ? redirect('/login')
-                : response()->json([
+            return response()->json([
                     'message' => 'Unauthorized',
                 ], 401);
         });
@@ -80,9 +78,7 @@ class Handler extends ExceptionHandler
         });
 
         $this->renderable(function (ValidationException $e, $request) {
-            return ! $request->expectsJson()
-                ? $this->invalid($request, $e)
-                : response()->json([
+            return response()->json([
                     'message' => 'The given data was invalid',
                     'errors' => $e->errors(),
                 ], 422);
