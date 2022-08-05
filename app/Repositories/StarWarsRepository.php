@@ -45,7 +45,7 @@ class StarWarsRepository implements StarWarsRepositoryInterface
         ]);
     }
 
-    public function findPlanets(int $id): Planet
+    public function findPlanet(int $id): Planet
     {
         $planet = Planet::find($id);
 

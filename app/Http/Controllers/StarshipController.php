@@ -35,7 +35,7 @@ class StarshipController extends Controller
      */
     public function show(int $id): JsonResponse
     {
-        $starship = $this->starWarsRepository->findStarship($id);
+        $starship = $this->starWarsRepository->findStarships($id);
 
         return response()->json($starship);
     }

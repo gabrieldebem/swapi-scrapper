@@ -25,11 +25,11 @@ class UserController extends Controller
     {
         $user = User::where('email', $request->input('email'))->first();
 
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        if (! $user || ! Hash::check($request->input('password'), $user->password)) {
             throw new \Exception('Invalid credentials', 401);
         }
 
-        $token = $user->createToken($request->device_name)->plainTextToken;
+        $token = $user->createToken($request->input('device'))->plainTextToken;
 
         return response()->json(['token' => $token]);
     }

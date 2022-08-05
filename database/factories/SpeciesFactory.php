@@ -17,7 +17,14 @@ class SpeciesFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'classification' => $this->faker->name(),
+            'designation' => $this->faker->name(),
+            'average_height' => $this->faker->name(),
+            'skin_colors' => $this->faker->colorName(),
+            'eye_colors' => $this->faker->colorName(),
+            'average_lifespan' => $this->faker->text(10),
+            'language'  => $this->faker->text(10),
         ];
     }
 }

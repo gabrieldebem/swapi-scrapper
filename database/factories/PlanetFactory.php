@@ -17,7 +17,15 @@ class PlanetFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'climate' => $this->faker->name(),
+            'terrain' => $this->faker->name(),
+            'surface_water' => $this->faker->name(),
+            'population' => $this->faker->name(),
+            'rotation_period' => $this->faker->name(),
+            'orbital_period' => $this->faker->name(),
+            'diameter' => (string) $this->faker->randomFloat(),
+            'gravity' => (string) $this->faker->randomFloat(),
         ];
     }
 }

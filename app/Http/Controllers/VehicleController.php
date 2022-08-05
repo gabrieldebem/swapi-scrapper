@@ -35,7 +35,7 @@ class VehicleController extends Controller
      */
     public function show(int $id): JsonResponse
     {
-        $vehicle = $this->starWarsRepository->findVehicle($id);
+        $vehicle = $this->starWarsRepository->findVehicles($id);
 
         return response()->json($vehicle);
     }

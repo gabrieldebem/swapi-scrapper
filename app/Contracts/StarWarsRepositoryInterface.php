@@ -13,7 +13,7 @@ interface StarWarsRepositoryInterface
 {
     public function findPerson(int $id): Person;
 
-    public function findPlanets(int $id): Planet;
+    public function findPlanet(int $id): Planet;
 
     public function findVehicles(int $id): Vehicle;
 
