@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Repositories;
 
 use App\Clients\SWApiClient;
 use App\Contracts\StarWarsRepositoryInterface;
@@ -138,7 +138,7 @@ class StarWarsRepository implements StarWarsRepositoryInterface
         $film = Film::find($id);
 
         if (!$film) {
-            $film = $this->client->getFilms($id);
+            $film = $this->createFilmFromExternalProvider($id);
         }
 
         return $film;
@@ -164,7 +164,7 @@ class StarWarsRepository implements StarWarsRepositoryInterface
         $starship = Starship::find($id);
 
         if (!$starship) {
-            $starship = $this->client->getStarships($id);
+            $starship = $this->createStarshipFromExternalProvider($id);
         }
 
         return $starship;
@@ -190,5 +190,35 @@ class StarWarsRepository implements StarWarsRepositoryInterface
             'MGLT' => $extStarship->MGLT,
             'starship_class' => $extStarship->starship_class,
         ]);
+    }
+
+    public function listPeople(?array $filters = [])
+    {
+        return $this->client->getPeople(filters: $filters);
+    }
+
+    public function listPlanets(?array $filters = [])
+    {
+        return $this->client->getPlanets(filters: $filters);
+    }
+
+    public function listVehicles(?array $filters = [])
+    {
+        return $this->client->getVehicles(filters: $filters);
+    }
+
+    public function listSpecies(?array $filters = [])
+    {
+        return $this->client->getSpecies(filters: $filters);
+    }
+
+    public function listFilms(?array $filters = [])
+    {
+        return $this->client->getFilms(filters: $filters);
+    }
+
+    public function listStarships(?array $filters = [])
+    {
+        return $this->client->getStarships(filters: $filters);
     }
 }

@@ -17,4 +17,11 @@ interface StarWarsRepositoryInterface
     public function findSpecies(int $id): Species;
     public function findFilm(int $id): Film;
     public function findStarships(int $id): Starship;
+
+    public function listPeople();
+    public function listPlanets();
+    public function listVehicles();
+    public function listSpecies();
+    public function listFilms();
+    public function listStarships();
 }

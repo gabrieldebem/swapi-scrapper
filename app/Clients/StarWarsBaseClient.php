@@ -9,6 +9,6 @@ abstract class StarWarsBaseClient
 {
     protected function client(): PendingRequest
     {
-        return Http::baseUrl(config('sw_api.url'));
+        return Http::baseUrl(config('services.sw_api.url'));
     }
 }

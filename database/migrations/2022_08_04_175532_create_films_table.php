@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('episode_id');
-            $table->string('opening_crawl');
+            $table->text('opening_crawl');
             $table->string('director');
             $table->string('producer');
             $table->string('release_date');

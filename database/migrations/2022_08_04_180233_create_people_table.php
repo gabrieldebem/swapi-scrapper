@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('hair_color');
             $table->string('skin_color');
             $table->string('eye_color');
-            $table->timestamp('birth_year');
+            $table->string('birth_year');
             $table->string('gender');
             $table->timestamps();
         });
