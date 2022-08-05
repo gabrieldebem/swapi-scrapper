@@ -29,6 +29,8 @@ class UserController extends Controller
             throw new \Exception('Invalid credentials', 401);
         }
 
+        $user->tokens()->delete();
+
         $token = $user->createToken($request->input('device'))->plainTextToken;
 
         return response()->json(['token' => $token]);

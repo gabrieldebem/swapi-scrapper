@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\StarWarsRepositoryInterface;
+use App\Jobs\SyncStarWarsPlanets;
 use App\Models\Planet;
 use Illuminate\Http\JsonResponse;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -38,5 +39,12 @@ class PlanetController extends Controller
         $planet = $this->starWarsRepository->findPlanet($id);
 
         return response()->json($planet);
+    }
+
+    public function sync(): JsonResponse
+    {
+        dispatch(new SyncStarWarsPlanets());
+
+        return response()->json(['message' => 'Sync started']);
     }
 }

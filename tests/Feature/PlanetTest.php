@@ -3,9 +3,8 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Bus;
 use Tests\AbstractTestCase;
-use Tests\TestCase;
 
 class PlanetTest extends AbstractTestCase
 {
@@ -29,5 +28,16 @@ class PlanetTest extends AbstractTestCase
             ->get("/api/planets/{$planet->id}")
             ->assertSuccessful()
             ->assertJson($planet->toArray());
+    }
+
+    public function testCanSyncPlanets()
+    {
+        Bus::fake(\App\Jobs\SyncStarWarsPlanets::class);
+
+        $this->actingAs($this->generateUser())
+            ->post('/api/planets/sync')
+            ->assertSuccessful();
+
+        Bus::assertDispatched(\App\Jobs\SyncStarWarsPlanets::class);
     }
 }

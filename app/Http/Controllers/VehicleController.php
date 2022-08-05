@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\StarWarsRepositoryInterface;
+use App\Jobs\SyncStarWarsVehicles;
 use App\Models\Vehicle;
 use Illuminate\Http\JsonResponse;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -38,5 +39,12 @@ class VehicleController extends Controller
         $vehicle = $this->starWarsRepository->findVehicles($id);
 
         return response()->json($vehicle);
+    }
+
+    public function sync(): JsonResponse
+    {
+        dispatch(new SyncStarWarsVehicles());
+
+        return response()->json(['message' => 'Sync started']);
     }
 }

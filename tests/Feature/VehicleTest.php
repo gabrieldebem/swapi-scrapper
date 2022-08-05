@@ -3,9 +3,8 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Bus;
 use Tests\AbstractTestCase;
-use Tests\TestCase;
 
 class VehicleTest extends AbstractTestCase
 {
@@ -31,5 +30,16 @@ class VehicleTest extends AbstractTestCase
             ->get("/api/vehicles/{$vehicle->id}")
             ->assertSuccessful()
             ->assertJson($vehicle->toArray());
+    }
+
+    public function testCanSyncVehicles()
+    {
+        Bus::fake(\App\Jobs\SyncStarWarsVehicles::class);
+
+        $this->actingAs($this->generateUser())
+            ->post('/api/vehicles/sync')
+            ->assertSuccessful();
+
+        Bus::assertDispatched(\App\Jobs\SyncStarWarsVehicles::class);
     }
 }

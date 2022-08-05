@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\PruneInSevenDays;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Species extends Model
 {
-    use HasFactory;
+    use HasFactory, PruneInSevenDays;
 
     protected $fillable = [
         'name',

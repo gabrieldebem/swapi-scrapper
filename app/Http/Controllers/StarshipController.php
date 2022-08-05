@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\StarWarsRepositoryInterface;
+use App\Jobs\SyncStarWarsFilms;
+use App\Jobs\SyncStarWarsStarships;
 use App\Models\Starship;
 use Illuminate\Http\JsonResponse;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -38,5 +40,12 @@ class StarshipController extends Controller
         $starship = $this->starWarsRepository->findStarships($id);
 
         return response()->json($starship);
+    }
+
+    public function sync(): JsonResponse
+    {
+        dispatch(new SyncStarWarsStarships());
+
+        return response()->json(['message' => 'Sync started']);
     }
 }

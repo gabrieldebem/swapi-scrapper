@@ -24,7 +24,7 @@ class SpeciesFactory extends Factory
             'skin_colors' => $this->faker->colorName(),
             'eye_colors' => $this->faker->colorName(),
             'average_lifespan' => $this->faker->text(10),
-            'language'  => $this->faker->text(10),
+            'language' => $this->faker->text(10),
         ];
     }
 }

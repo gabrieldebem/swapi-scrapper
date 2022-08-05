@@ -2,8 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\Jobs\SyncStarWarsPeople;
 use App\Models\Person;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Bus;
 use Tests\AbstractTestCase;
 
 class PeopleTest extends AbstractTestCase
@@ -30,5 +32,16 @@ class PeopleTest extends AbstractTestCase
             ->get("/api/people/{$people->id}")
             ->assertSuccessful()
             ->assertJson($people->toArray());
+    }
+
+    public function testCanSyncPeople()
+    {
+        Bus::fake(SyncStarWarsPeople::class);
+
+        $this->actingAs($this->generateUser())
+            ->post('/api/people/sync')
+            ->assertSuccessful();
+
+        Bus::assertDispatched(SyncStarWarsPeople::class);
     }
 }

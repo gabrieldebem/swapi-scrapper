@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\StarWarsRepositoryInterface;
+use App\Jobs\SyncStarWarsFilms;
 use App\Models\Film;
 use Illuminate\Http\JsonResponse;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -38,5 +39,12 @@ class FilmController extends Controller
         $film = $this->starWarsRepository->findFilm($id);
 
         return response()->json($film);
+    }
+
+    public function sync(): JsonResponse
+    {
+        dispatch(new SyncStarWarsFilms());
+
+        return response()->json(['message' => 'Sync started']);
     }
 }

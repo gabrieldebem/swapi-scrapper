@@ -3,9 +3,8 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Bus;
 use Tests\AbstractTestCase;
-use Tests\TestCase;
 
 class SpeciesTest extends AbstractTestCase
 {
@@ -31,5 +30,16 @@ class SpeciesTest extends AbstractTestCase
             ->get("/api/species/{$species->id}")
             ->assertSuccessful()
             ->assertJson($species->toArray());
+    }
+
+    public function testCanSyncSpecies()
+    {
+        Bus::fake(\App\Jobs\SyncStarWarsSpecies::class);
+
+        $this->actingAs($this->generateUser())
+            ->post('/api/species/sync')
+            ->assertSuccessful();
+
+        Bus::assertDispatched(\App\Jobs\SyncStarWarsSpecies::class);
     }
 }

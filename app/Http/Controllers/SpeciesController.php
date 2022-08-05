@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\StarWarsRepositoryInterface;
+use App\Jobs\SyncStarWarsSpecies;
 use App\Models\Species;
 use Illuminate\Http\JsonResponse;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -38,5 +39,12 @@ class SpeciesController extends Controller
         $species = $this->starWarsRepository->findSpecies($id);
 
         return response()->json($species);
+    }
+
+    public function sync(): JsonResponse
+    {
+        dispatch(new SyncStarWarsSpecies());
+
+        return response()->json(['message' => 'Sync started']);
     }
 }
