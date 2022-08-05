@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\StarWarsRepositoryInterface;
-use App\Http\Requests\StorePersonRequest;
-use App\Http\Requests\UpdatePersonRequest;
 use App\Models\Person;
+use Illuminate\Http\JsonResponse;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class PersonController extends Controller
 {
@@ -16,21 +16,27 @@ class PersonController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        $people = QueryBuilder::for(Person::class)
+            ->defaultSort('created_at')
+            ->paginate();
+
+        return response()->json($people);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Person  $person
-     * @return \Illuminate\Http\Response
+     * @param  int  $id
+     * @return JsonResponse
      */
-    public function show(Person $person)
+    public function show(int $id): JsonResponse
     {
-        //
+        $person = $this->starWarsService->findPerson($id);
+
+        return response()->json($person);
     }
 }

@@ -63,7 +63,7 @@ class SyncStarWarsEntities implements ShouldQueue
             }
 
             $page++;
-        } while((bool) $people->next);
+        } while ((bool) $people->next);
     }
 
     private function syncPlanets(): void
@@ -88,7 +88,7 @@ class SyncStarWarsEntities implements ShouldQueue
             }
 
             $page++;
-        } while((bool) $planets->next);
+        } while ((bool) $planets->next);
     }
 
     private function syncVehicles(): void
@@ -115,7 +115,7 @@ class SyncStarWarsEntities implements ShouldQueue
             }
 
             $page++;
-        } while((bool) $vehicles->next);
+        } while ((bool) $vehicles->next);
     }
 
     private function syncSpecies(): void
@@ -139,7 +139,7 @@ class SyncStarWarsEntities implements ShouldQueue
             }
 
             $page++;
-        } while((bool) $species->next);
+        } while ((bool) $species->next);
     }
 
     private function syncFilms(): void
@@ -161,7 +161,7 @@ class SyncStarWarsEntities implements ShouldQueue
             }
 
             $page++;
-        } while((bool) $films->next);
+        } while ((bool) $films->next);
     }
 
     private function syncStarships(): void
@@ -190,6 +190,6 @@ class SyncStarWarsEntities implements ShouldQueue
             }
 
             $page++;
-        } while((bool) $starships->next);
+        } while ((bool) $starships->next);
     }
 }

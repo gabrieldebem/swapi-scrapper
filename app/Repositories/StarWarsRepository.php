@@ -21,7 +21,7 @@ class StarWarsRepository implements StarWarsRepositoryInterface
     {
         $person = Person::find($id);
 
-        if (!$person) {
+        if (! $person) {
             $person = $this->createPersonFromExternalProvider($id);
         }
 
@@ -47,9 +47,9 @@ class StarWarsRepository implements StarWarsRepositoryInterface
 
     public function findPlanets(int $id): Planet
     {
-        $planet =  Planet::find($id);
+        $planet = Planet::find($id);
 
-        if (!$planet) {
+        if (! $planet) {
             $planet = $this->createPlanetFromExternalProvider($id);
         }
 
@@ -78,7 +78,7 @@ class StarWarsRepository implements StarWarsRepositoryInterface
     {
         $vehicle = Vehicle::find($id);
 
-        if (!$vehicle) {
+        if (! $vehicle) {
             $vehicle = $this->createVehicleFromExternalProvider($id);
         }
 
@@ -109,7 +109,7 @@ class StarWarsRepository implements StarWarsRepositoryInterface
     {
         $species = Species::find($id);
 
-        if (!$species) {
+        if (! $species) {
             $species = $this->createSpeciesFromExternalProvider($id);
         }
 
@@ -137,7 +137,7 @@ class StarWarsRepository implements StarWarsRepositoryInterface
     {
         $film = Film::find($id);
 
-        if (!$film) {
+        if (! $film) {
             $film = $this->createFilmFromExternalProvider($id);
         }
 
@@ -163,7 +163,7 @@ class StarWarsRepository implements StarWarsRepositoryInterface
     {
         $starship = Starship::find($id);
 
-        if (!$starship) {
+        if (! $starship) {
             $starship = $this->createStarshipFromExternalProvider($id);
         }
 

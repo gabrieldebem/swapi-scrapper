@@ -2,85 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreVehicleRequest;
-use App\Http\Requests\UpdateVehicleRequest;
+use App\Contracts\StarWarsRepositoryInterface;
 use App\Models\Vehicle;
+use Illuminate\Http\JsonResponse;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class VehicleController extends Controller
 {
+    public function __construct(private readonly StarWarsRepositoryInterface $starWarsRepository)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
-    }
+        $vehicles = QueryBuilder::for(Vehicle::class)
+            ->defaultSort('created_at')
+            ->paginate();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreVehicleRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreVehicleRequest $request)
-    {
-        //
+        return response()->json($vehicles);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Vehicle  $vehicle
-     * @return \Illuminate\Http\Response
+     * @param  int  $id
+     * @return JsonResponse
      */
-    public function show(Vehicle $vehicle)
+    public function show(int $id): JsonResponse
     {
-        //
-    }
+        $vehicle = $this->starWarsRepository->findVehicle($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Vehicle  $vehicle
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Vehicle $vehicle)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateVehicleRequest  $request
-     * @param  \App\Models\Vehicle  $vehicle
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateVehicleRequest $request, Vehicle $vehicle)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Vehicle  $vehicle
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Vehicle $vehicle)
-    {
-        //
+        return response()->json($vehicle);
     }
 }

@@ -2,85 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreSpeciesRequest;
-use App\Http\Requests\UpdateSpeciesRequest;
+use App\Contracts\StarWarsRepositoryInterface;
 use App\Models\Species;
+use Illuminate\Http\JsonResponse;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class SpeciesController extends Controller
 {
+    public function __construct(private readonly StarWarsRepositoryInterface $starWarsRepository)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
-    }
+        $species = QueryBuilder::for(Species::class)
+            ->defaultSort('created_at')
+            ->paginate();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreSpeciesRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreSpeciesRequest $request)
-    {
-        //
+        return response()->json($species);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Species  $species
-     * @return \Illuminate\Http\Response
+     * @param  int  $id
+     * @return JsonResponse
      */
-    public function show(Species $species)
+    public function show(int $id)
     {
-        //
-    }
+        $species = $this->starWarsRepository->findSpecies($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Species  $species
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Species $species)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateSpeciesRequest  $request
-     * @param  \App\Models\Species  $species
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateSpeciesRequest $request, Species $species)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Species  $species
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Species $species)
-    {
-        //
+        return response()->json($species);
     }
 }
