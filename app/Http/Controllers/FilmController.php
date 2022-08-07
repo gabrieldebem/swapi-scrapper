@@ -15,9 +15,17 @@ class FilmController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return JsonResponse
+     * @OA\Get(
+     *     tags={"Films"},
+     *     path="/films",
+     *     summary="Get all films",
+     *     description="Get all films",
+     *     operationId="getFilms",
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation"
+     *     ),
+     * )
      */
     public function index(): JsonResponse
     {
@@ -29,10 +37,27 @@ class FilmController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return JsonResponse
+     * @OA\Get(
+     *     tags={"Films"},
+     *     path="/films/{id}",
+     *     summary="Get a film",
+     *     description="Get a film",
+     *     operationId="getFilm",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Film ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation"
+     *     ),
+     * )
      */
     public function show(int $id): JsonResponse
     {
@@ -41,6 +66,19 @@ class FilmController extends Controller
         return response()->json($film);
     }
 
+    /**
+     * @OA\Post(
+     *     tags={"Films"},
+     *     path="/films/sync",
+     *     summary="Sync all films",
+     *     description="Sync all films",
+     *     operationId="syncFilms",
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation"
+     *     ),
+     * )
+     */
     public function sync(): JsonResponse
     {
         dispatch(new SyncStarWarsFilms());

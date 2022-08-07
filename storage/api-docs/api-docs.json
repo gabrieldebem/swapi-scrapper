@@ -1,0 +1,473 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Star Wars API",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api"
+        }
+    ],
+    "paths": {
+        "/films": {
+            "get": {
+                "tags": [
+                    "Films"
+                ],
+                "summary": "Get all films",
+                "description": "Get all films",
+                "operationId": "getFilms",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/films/{id}": {
+            "get": {
+                "tags": [
+                    "Films"
+                ],
+                "summary": "Get a film",
+                "description": "Get a film",
+                "operationId": "getFilm",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Film ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/films/sync": {
+            "post": {
+                "tags": [
+                    "Films"
+                ],
+                "summary": "Sync all films",
+                "description": "Sync all films",
+                "operationId": "syncFilms",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/people": {
+            "get": {
+                "tags": [
+                    "People"
+                ],
+                "summary": "Get all people",
+                "description": "Display a listing of the resource.",
+                "operationId": "bbf60c056e9fad32db862c7437907d82",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/people/{id}": {
+            "get": {
+                "tags": [
+                    "People"
+                ],
+                "summary": "Get a person",
+                "description": "Display the specified resource.",
+                "operationId": "f698b10b7a2bef552bfbe7046d463640",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "SW Person ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/people/sync": {
+            "post": {
+                "tags": [
+                    "People"
+                ],
+                "summary": "Sync all people",
+                "description": "Sync all people.",
+                "operationId": "031d172031bb6e82fb95db84b9673930",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/planets": {
+            "get": {
+                "tags": [
+                    "Planets"
+                ],
+                "summary": "List all sw planets",
+                "description": "Display a listing of the resource.",
+                "operationId": "3a1c38761ac7e4258944a0bf9f594975",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/planets/{id}": {
+            "get": {
+                "tags": [
+                    "Planets"
+                ],
+                "summary": "Show sw planet",
+                "description": "Display the specified resource.",
+                "operationId": "6ab4c4abdb88c4fe70d46c7b359604a5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Planet id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/planets/sync": {
+            "post": {
+                "tags": [
+                    "Planets"
+                ],
+                "summary": "Sync sw planets",
+                "description": "Sync sw planets.",
+                "operationId": "44b58ed423c0102af96ec97ccfe11ae0",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/species": {
+            "get": {
+                "tags": [
+                    "Species"
+                ],
+                "summary": "Get all species",
+                "description": "Get all species",
+                "operationId": "getAllSpecies",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/species/{id}": {
+            "get": {
+                "tags": [
+                    "Species"
+                ],
+                "summary": "Get a species",
+                "description": "Get a species",
+                "operationId": "getSpecies",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Species ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Specie not found"
+                    }
+                }
+            }
+        },
+        "/species/sync": {
+            "post": {
+                "tags": [
+                    "Species"
+                ],
+                "summary": "Sync all species",
+                "description": "Sync all species",
+                "operationId": "syncAllSpecies",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/starships": {
+            "get": {
+                "tags": [
+                    "Starships"
+                ],
+                "summary": "Get all starships",
+                "description": "Get all starships",
+                "operationId": "getStarships",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/starships/{id}": {
+            "get": {
+                "tags": [
+                    "Starships"
+                ],
+                "summary": "Get a starship",
+                "description": "Get a starship",
+                "operationId": "getStarship",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Starship ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/starships/sync": {
+            "post": {
+                "tags": [
+                    "Starships"
+                ],
+                "summary": "Sync all starships",
+                "description": "Sync all starships",
+                "operationId": "syncStarships",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/sync": {
+            "get": {
+                "tags": [
+                    "Sync Entities"
+                ],
+                "summary": "Sync all entities",
+                "description": "Sync all entities using an external api",
+                "operationId": "ec78c489211d180f11965983d15cc05c",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/users": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Create a new user",
+                "description": "Create a new authenticable user",
+                "operationId": "a1fce870c566eb5fc0cf3178ec5d2fed",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Name of the user",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "Email of the user",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Password of the user",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created"
+                    }
+                }
+            }
+        },
+        "/users/auth": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Authenticate a user",
+                "description": "Authenticate a user",
+                "operationId": "7a7dc262722b1a5f466c73861dd76a42",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "Email of the user",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Password of the user",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User authenticated"
+                    }
+                }
+            }
+        },
+        "/users/me": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get current user",
+                "description": "Get current user",
+                "operationId": "c26146dbc87681db03ebd0c6df994764",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/vehicles": {
+            "get": {
+                "tags": [
+                    "Vehicles"
+                ],
+                "summary": "Get all vehicles",
+                "description": "Get all vehicles",
+                "operationId": "getVehicles",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/vehicles/{id}": {
+            "get": {
+                "tags": [
+                    "Vehicles"
+                ],
+                "summary": "Get a vehicle",
+                "description": "Get a vehicle",
+                "operationId": "getVehicle",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Vehicle ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/vehicles/sync": {
+            "post": {
+                "tags": [
+                    "Vehicles"
+                ],
+                "summary": "Sync vehicles",
+                "description": "Sync vehicles",
+                "operationId": "syncVehicles",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+    }
+}

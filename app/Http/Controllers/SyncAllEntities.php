@@ -9,12 +9,21 @@ use App\Jobs\SyncStarWarsSpecies;
 use App\Jobs\SyncStarWarsStarships;
 use App\Jobs\SyncStarWarsVehicles;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Bus;
 
 class SyncAllEntities extends Controller
 {
     /**
-     * @return JsonResponse
+     * @OA\Get(
+     *     tags={"Sync Entities"},
+     *     summary="Sync all entities",
+     *     description="Sync all entities using an external api",
+     *     path="/sync",
+     *     security={{"Bearer":{}}},
+     *     @OA\Response(
+     *     response=200,
+     *     description="Success",
+     *   ),
+     * )
      */
     public function __invoke(): JsonResponse
     {

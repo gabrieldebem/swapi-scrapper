@@ -18,6 +18,16 @@ class PlanetController extends Controller
      * Display a listing of the resource.
      *
      * @return JsonResponse
+     *
+     * @OA\Get(
+     *     path="/planets",
+     *     summary="List all sw planets",
+     *     tags={"Planets"},
+     *     @OA\Response(
+     *     response=200,
+     *     description="successful operation",
+     *     ),
+     * ),
      */
     public function index(): JsonResponse
     {
@@ -33,6 +43,20 @@ class PlanetController extends Controller
      *
      * @param  int  $id
      * @return JsonResponse
+     *
+     * @OA\Get(
+     *     path="/planets/{id}",
+     *     summary="Show sw planet",
+     *     tags={"Planets"},
+     *     @OA\Parameter(
+     *     name="id",
+     *     in="path",
+     *     description="Planet id",
+     *     required=true,
+     *     @OA\Schema(type="integer", format="int64")
+     *    ),
+     *     @OA\Response(response=200, description="successful operation"),
+     * )
      */
     public function show(int $id): JsonResponse
     {
@@ -41,6 +65,18 @@ class PlanetController extends Controller
         return response()->json($planet);
     }
 
+    /**
+     * Sync sw planets.
+     *
+     * @return JsonResponse
+     *
+     * @OA\Post(
+     *     path="/planets/sync",
+     *     summary="Sync sw planets",
+     *     tags={"Planets"},
+     *     @OA\Response(response=200, description="successful operation"),
+     * )
+     */
     public function sync(): JsonResponse
     {
         dispatch(new SyncStarWarsPlanets());

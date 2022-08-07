@@ -15,9 +15,17 @@ class VehicleController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return JsonResponse
+     * @OA\Get(
+     *     tags={"Vehicles"},
+     *     path="/vehicles",
+     *     summary="Get all vehicles",
+     *     description="Get all vehicles",
+     *     operationId="getVehicles",
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation"
+     *     ),
+     * )
      */
     public function index(): JsonResponse
     {
@@ -29,10 +37,27 @@ class VehicleController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return JsonResponse
+     * @OA\Get(
+     *     tags={"Vehicles"},
+     *     path="/vehicles/{id}",
+     *     summary="Get a vehicle",
+     *     description="Get a vehicle",
+     *     operationId="getVehicle",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Vehicle ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation"
+     *     ),
+     * )
      */
     public function show(int $id): JsonResponse
     {
@@ -41,6 +66,19 @@ class VehicleController extends Controller
         return response()->json($vehicle);
     }
 
+    /**
+     * @OA\Post(
+     *     tags={"Vehicles"},
+     *     path="/vehicles/sync",
+     *     summary="Sync vehicles",
+     *     description="Sync vehicles",
+     *     operationId="syncVehicles",
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation"
+     *     ),
+     * )
+     */
     public function sync(): JsonResponse
     {
         dispatch(new SyncStarWarsVehicles());

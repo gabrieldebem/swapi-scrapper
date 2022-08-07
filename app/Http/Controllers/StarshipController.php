@@ -16,9 +16,17 @@ class StarshipController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return JsonResponse
+     * @OA\Get(
+     *     tags={"Starships"},
+     *     path="/starships",
+     *     summary="Get all starships",
+     *     description="Get all starships",
+     *     operationId="getStarships",
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation"
+     *     ),
+     * )
      */
     public function index(): JsonResponse
     {
@@ -30,10 +38,27 @@ class StarshipController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return JsonResponse
+     * @OA\Get(
+     *     tags={"Starships"},
+     *     path="/starships/{id}",
+     *     summary="Get a starship",
+     *     description="Get a starship",
+     *     operationId="getStarship",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Starship ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation"
+     *     ),
+     * )
      */
     public function show(int $id): JsonResponse
     {
@@ -42,6 +67,19 @@ class StarshipController extends Controller
         return response()->json($starship);
     }
 
+    /**
+     * @OA\Post(
+     *     tags={"Starships"},
+     *     path="/starships/sync",
+     *     summary="Sync all starships",
+     *     description="Sync all starships",
+     *     operationId="syncStarships",
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation"
+     *     ),
+     * )
+     */
     public function sync(): JsonResponse
     {
         dispatch(new SyncStarWarsStarships());

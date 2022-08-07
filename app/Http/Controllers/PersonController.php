@@ -19,6 +19,16 @@ class PersonController extends Controller
      * Display a listing of the resource.
      *
      * @return JsonResponse
+     *
+     * @OA\Get(
+     *     path="/people",
+     *     summary="Get all people",
+     *     tags={"People"},
+     *     @OA\Response(
+     *     response=200,
+     *     description="successful operation",
+     *     ),
+     * ),
      */
     public function index(): JsonResponse
     {
@@ -34,6 +44,23 @@ class PersonController extends Controller
      *
      * @param  int  $id
      * @return JsonResponse
+     *
+     * @OA\Get(
+     *     path="/people/{id}",
+     *     summary="Get a person",
+     *     tags={"People"},
+     *     @OA\Parameter(
+     *     name="id",
+     *     in="path",
+     *     description="SW Person ID",
+     *     required=true,
+     *     @OA\Schema(type="integer", format="int64"),
+     *     ),
+     *     @OA\Response(
+     *     response=200,
+     *     description="successful operation",
+     *     ),
+     * ),
      */
     public function show(int $id): JsonResponse
     {
@@ -42,6 +69,21 @@ class PersonController extends Controller
         return response()->json($person);
     }
 
+    /**
+     * Sync all people.
+     *
+     * @return JsonResponse
+     *
+     * @OA\Post(
+     *     path="/people/sync",
+     *     summary="Sync all people",
+     *     tags={"People"},
+     *     @OA\Response(
+     *     response=200,
+     *     description="successful operation",
+     *     ),
+     * ),
+     */
     public function sync(): JsonResponse
     {
         dispatch(new SyncStarWarsPeople());

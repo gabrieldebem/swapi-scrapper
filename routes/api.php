@@ -26,7 +26,7 @@ Route::post('/users/auth', [UserController::class, 'auth']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users/me', [UserController::class, 'me']);
-    Route::post('/entities/sync', SyncAllEntities::class);
+    Route::post('/sync', SyncAllEntities::class);
 
 
     Route::get('/people', [PersonController::class, 'index']);
