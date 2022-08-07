@@ -23,3 +23,7 @@ docker run --rm -u "$(id -u):$(id -g)" -v $(pwd):/var/www/html -w /var/www/html 
 ```
 - Run `./vendor/bin/sail key:generate` to generate a new application key
 - Run `./vendor/bin/sail migrate` to migrate the database
+
+## 
+## Documentation
+Access the swagger documentation on `http://localhost:8000/api/docs`
