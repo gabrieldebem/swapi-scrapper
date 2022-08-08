@@ -5,10 +5,8 @@ namespace Tests\Feature;
 use App\Jobs\SyncStarWarsFilms;
 use App\Models\Film;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Bus;
 use Tests\AbstractTestCase;
-use Tests\TestCase;
 
 class FilmTest extends AbstractTestCase
 {

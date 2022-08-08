@@ -3,16 +3,14 @@
 namespace Tests\Feature;
 
 use App\Clients\SWApiClient;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Tests\TestCase;
 
 class SWApiClientTest extends TestCase
 {
     private string $url;
+
     private SWApiClient $client;
 
     public function setUp(): void
@@ -25,7 +23,7 @@ class SWApiClientTest extends TestCase
     /** @test */
     public function testCanGetFilms()
     {
-        $url = $this->url . 'films/1';
+        $url = $this->url.'films/1';
         $fakeResponse = ['response' => 'fake'];
 
         Http::fake([
@@ -46,7 +44,7 @@ class SWApiClientTest extends TestCase
     /** @test */
     public function testCanGetPeople()
     {
-        $url = $this->url . 'people/1';
+        $url = $this->url.'people/1';
         $fakeResponse = ['response' => 'fake'];
 
         Http::fake([
@@ -67,7 +65,7 @@ class SWApiClientTest extends TestCase
     /** @test */
     public function testCanGetPlanets()
     {
-        $url = $this->url . 'planets/1';
+        $url = $this->url.'planets/1';
         $fakeResponse = ['response' => 'fake'];
 
         Http::fake([
@@ -88,7 +86,7 @@ class SWApiClientTest extends TestCase
     /** @test */
     public function testCanGetSpecies()
     {
-        $url = $this->url . 'species/1';
+        $url = $this->url.'species/1';
         $fakeResponse = ['response' => 'fake'];
 
         Http::fake([
@@ -109,7 +107,7 @@ class SWApiClientTest extends TestCase
     /** @test */
     public function testCanGetStarships()
     {
-        $url = $this->url . 'starships/1';
+        $url = $this->url.'starships/1';
         $fakeResponse = ['response' => 'fake'];
 
         Http::fake([
@@ -130,7 +128,7 @@ class SWApiClientTest extends TestCase
     /** @test */
     public function testCanGetVehicles()
     {
-        $url = $this->url . 'vehicles/1';
+        $url = $this->url.'vehicles/1';
         $fakeResponse = ['response' => 'fake'];
 
         Http::fake([

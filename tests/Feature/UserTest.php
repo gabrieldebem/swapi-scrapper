@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Exceptions\InvalidCredentialsException;
 use App\Models\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
