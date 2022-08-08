@@ -49,8 +49,8 @@ class Handler extends ExceptionHandler
     {
         $this->renderable(function (AuthenticationException $e, $request) {
             return response()->json([
-                    'message' => 'Unauthorized',
-                ], 401);
+                'message' => 'Unauthorized',
+            ], 401);
         });
 
         $this->renderable(function (AccessDeniedHttpException $e, $request) {
@@ -79,9 +79,16 @@ class Handler extends ExceptionHandler
 
         $this->renderable(function (ValidationException $e, $request) {
             return response()->json([
-                    'message' => 'The given data was invalid',
-                    'errors' => $e->errors(),
-                ], 422);
+                'message' => 'The given data was invalid',
+                'errors' => $e->errors(),
+            ], 422);
+        });
+
+        $this->renderable(function (\Exception $e, $request) {
+            return response()->json([
+                'message' => $e->getMessage(),
+                'errors' => env('APP_DEBUG') ? $e->getTrace() : [],
+            ], $e->getCode() ?: 500);
         });
     }
 }

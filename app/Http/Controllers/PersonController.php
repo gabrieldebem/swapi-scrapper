@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\StarWarsRepositoryInterface;
-use App\Jobs\SyncStarWarsFilms;
 use App\Jobs\SyncStarWarsPeople;
 use App\Models\Person;
 use Illuminate\Http\JsonResponse;

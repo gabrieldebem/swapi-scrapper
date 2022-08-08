@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Exceptions\InvalidCredentialsException;
 use App\Models\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
@@ -49,6 +50,21 @@ class UserTest extends TestCase
 
         $this->post('/api/users/auth', $data)
             ->assertSuccessful();
+    }
+
+    public function testCantAuthUserWithInvalidCredentials()
+    {
+        $data = [
+            'email' => $this->faker->safeEmail(),
+            'password' => 'password',
+            'device' => 'mobile',
+        ];
+
+        $this->post('/api/users/auth', $data)
+            ->assertUnauthorized()
+            ->assertJson([
+                'message' => trans('auth.failed'),
+            ]);
     }
 
     public function testCanGetAuthUser()

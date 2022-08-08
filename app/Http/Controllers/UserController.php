@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InvalidCredentialsException;
 use App\Http\Requests\AuthUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     /**
-     * @param StoreUserRequest $request
+     * @param  StoreUserRequest  $request
      * @return JsonResponse
      *
      * @OA\Post(
@@ -47,8 +48,9 @@ class UserController extends Controller
     }
 
     /**
-     * @param AuthUserRequest $request
+     * @param  AuthUserRequest  $request
      * @return JsonResponse
+     *
      * @throws Exception
      *
      * @OA\Post(
@@ -72,7 +74,7 @@ class UserController extends Controller
         $user = User::where('email', $request->input('email'))->first();
 
         if (! $user || ! Hash::check($request->input('password'), $user->password)) {
-            throw new Exception('Invalid credentials', 401);
+            throw new InvalidCredentialsException();
         }
 
         $user->tokens()->delete();

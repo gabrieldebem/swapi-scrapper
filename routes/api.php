@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\Actions\SyncAllEntities;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\PlanetController;
 use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\StarshipController;
-use App\Http\Controllers\SyncAllEntities;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +27,6 @@ Route::post('/users/auth', [UserController::class, 'auth']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users/me', [UserController::class, 'me']);
     Route::post('/sync', SyncAllEntities::class);
-
 
     Route::get('/people', [PersonController::class, 'index']);
     Route::get('/people/{id}', [PersonController::class, 'show']);

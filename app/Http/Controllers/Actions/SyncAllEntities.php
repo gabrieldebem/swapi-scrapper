@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Actions;
 
+use App\Http\Controllers\Controller;
 use App\Jobs\SyncStarWarsFilms;
 use App\Jobs\SyncStarWarsPeople;
 use App\Jobs\SyncStarWarsPlanets;
@@ -13,7 +14,7 @@ use Illuminate\Http\JsonResponse;
 class SyncAllEntities extends Controller
 {
     /**
-     * @OA\Get(
+     * @OA\Post(
      *     tags={"Sync Entities"},
      *     summary="Sync all entities",
      *     description="Sync all entities using an external api",

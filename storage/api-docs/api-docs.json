@@ -10,6 +10,26 @@
         }
     ],
     "paths": {
+        "/sync": {
+            "post": {
+                "tags": [
+                    "Sync Entities"
+                ],
+                "summary": "Sync all entities",
+                "description": "Sync all entities using an external api",
+                "operationId": "03bdf77537d1b740713cff036c256118",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/films": {
             "get": {
                 "tags": [
@@ -296,26 +316,6 @@
                         "description": "successful operation"
                     }
                 }
-            }
-        },
-        "/sync": {
-            "get": {
-                "tags": [
-                    "Sync Entities"
-                ],
-                "summary": "Sync all entities",
-                "description": "Sync all entities using an external api",
-                "operationId": "ec78c489211d180f11965983d15cc05c",
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    }
-                },
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ]
             }
         },
         "/users": {

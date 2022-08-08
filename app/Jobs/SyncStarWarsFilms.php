@@ -27,9 +27,10 @@ class SyncStarWarsFilms implements ShouldQueue
     /**
      * Execute the job.
      *
+     * @param  StarWarsRepositoryInterface  $repository
      * @return void
      */
-    public function handle(StarWarsRepositoryInterface $repository)
+    public function handle(StarWarsRepositoryInterface $repository): void
     {
         $page = 1;
 
